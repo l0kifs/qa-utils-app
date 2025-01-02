@@ -1,0 +1,95 @@
+{% extends "base_template.html" %}
+
+{% block content %}
+<h1>Automation Task Creation Tool</h1>
+<!-- Description Section -->
+<div class="mb-4">
+    <button
+        class="btn btn-link text-decoration-none"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#description-section"
+        aria-expanded="false"
+        aria-controls="description-section"
+    >
+        Show/Hide Description
+    </button>
+    <div class="collapse" id="description-section">
+        <div class="card card-body">
+            <p>
+                The Automation Task Creation Tool helps you create tasks containing all the necessary service date for automation team.
+            </p>
+        </div>
+    </div>
+</div>
+
+<!-- Form Section -->
+<h2 class="text-center mb-4">Automation Task Creation</h2>
+
+<form id="loginForm">
+    <div class="mb-3">
+        <label for="email" class="form-label">Jira Email</label>
+        <input type="email" class="form-control" id="email" name="email" autocomplete="username" required>
+    </div>
+    <div class="mb-3">
+        <label for="password" class="form-label">Jira API Key</label>
+        <input type="password" class="form-control" id="password" name="password" autocomplete="current-password" required>
+    </div>
+</form>
+
+<form id="taskForm">
+    <div class="mb-3">
+        <label for="task_type" class="form-label">Task Type</label>
+        <select class="form-select" id="task_type" name="task_type" required onchange="toggleTestFields()">
+            <option value=""></option>
+            <optgroup label="Test" id="test_group">
+                <option value="qat:test:create">create new test</option>
+                <option value="qat:test:update">update existing test</option>
+                <option value="qat:test:delete">delete existing test</option>
+            </optgroup>
+            <optgroup label="Utility" id="util_group">
+                <option value="qat:util:create">create new utility</option>
+                <option value="qat:util:update">update existing utility</option>
+                <option value="qat:util:delete">delete existing utility</option>
+            </optgroup>
+            <optgroup label="Document" id="doc_group">
+                <option value="qat:doc:create">create new document</option>
+                <option value="qat:doc:update">update existing document</option>
+                <option value="qat:doc:delete">delete existing document</option>
+            </optgroup>
+            <optgroup label="General" id="general_group">
+                <option value="qat:monitoring">monitoring</option>
+                <option value="qat:support">support</option>
+            </optgroup>
+        </select>
+    </div>
+    <div class="mb-3">
+        <label for="task_name" class="form-label">Task Name</label>
+        <input type="text" class="form-control" id="task_name" name="task_name" required>
+    </div>
+    <div class="mb-3">
+        <label for="task_description" class="form-label">Task Description</label>
+        <textarea class="form-control" id="task_description" name="task_description" required></textarea>
+    </div>
+    <div id="testFields" style="display: none;">
+        <div class="mb-3">
+            <label for="test_key" class="form-label">Test Key</label>
+            <input type="text" class="form-control" id="test_key" name="test_key">
+        </div>
+        <div class="mb-3">
+            <label for="test_suite" class="form-label">Test Suite</label>
+            <select class="form-select" id="test_suite" name="test_suite">
+                <option value=""></option>
+                <option value="qat:suite:smoke">smoke</option>
+                <option value="qat:suite:regression">regression</option>
+            </select>
+        </div>
+    </div>
+</form>
+<button type="submit" id="submit_button" class="btn btn-primary">Submit</button>
+
+<!-- Result Section -->
+<div id="result" class="mt-4 p-3 bg-white rounded shadow-sm" style="display: none;"></div>
+
+<script src="/static/automation_task_creation_script.js"></script>
+{% endblock %}

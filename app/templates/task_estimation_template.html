@@ -1,0 +1,101 @@
+{% extends "base_template.html" %}
+
+{% block content %}
+<h1>Task Estimation Tool</h1>
+<!-- Description Section -->
+<div class="mb-4">
+    <button
+        class="btn btn-link text-decoration-none"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#description-section"
+        aria-expanded="false"
+        aria-controls="description-section"
+    >
+        Show/Hide Description
+    </button>
+    <div class="collapse" id="description-section">
+        <div class="card card-body">
+            <p>
+                The Task Estimation Tool helps you estimate the complexity and time required to complete tasks based on several key factors:
+            </p>
+            <ul>
+                <li><strong>Effort:</strong> How much work is involved (e.g., time, resources).
+                    <ul>
+                        <li>Example:</li>
+                        <li>1: Simple task.</li>
+                        <li>5: Multi-step task with a lot of manual work.</li>
+                    </ul>
+                </li>
+                <li><strong>Clarity:</strong> How clear the requirements are.
+                    <ul>
+                        <li>Example:</li>
+                        <li>1: Clear requirements, no questions.</li>
+                        <li>5: Poorly defined task, requires research.</li>
+                    </ul>
+                </li>
+                <li><strong>Technical Risks:</strong> Potential technical challenges.
+                    <ul>
+                        <li>Example:</li>
+                        <li>1: Minimal or no risks.</li>
+                        <li>5: High risks, requires approvals and backup solutions.</li>
+                    </ul>
+                </li>
+                <li><strong>Team Experience:</strong> Team familiarity with similar tasks.
+                    <ul>
+                        <li>Example:</li>
+                        <li>1: Task is within the team's expertise.</li>
+                        <li>5: Team is facing a new domain.</li>
+                    </ul>
+                </li>
+                <li><strong>Communication:</strong> Level of collaboration required with other parties.
+                    <ul>
+                        <li>Example:</li>
+                        <li>1: Minimal communication required to resolve the task.</li>
+                        <li>5: Task requires constant synchronization with many parties.</li>
+                    </ul>
+                </li>
+                <li><strong>Risk Level:</strong> General risk associated with the task.</li>
+            </ul>
+            <p>
+                Enter the details for each factor in the form below to get an estimated complexity score and time for the task.
+            </p>
+        </div>
+    </div>
+</div>
+
+<!-- Form Section -->
+<h2 class="text-center mb-4">Task Estimation</h2>
+<form id="task-form" class="row g-3">
+    <div class="col-md-6">
+        <label for="effort" class="form-label">Effort (1-5)</label>
+        <input type="number" id="effort" class="form-control" min="1" max="5" value="1" required>
+    </div>
+    <div class="col-md-6">
+        <label for="clarity" class="form-label">Clarity (1-5)</label>
+        <input type="number" id="clarity" class="form-control" min="1" max="5" value="1" required>
+    </div>
+    <div class="col-md-6">
+        <label for="risks" class="form-label">Technical Risks (1-5)</label>
+        <input type="number" id="risks" class="form-control" min="1" max="5" value="1" required>
+    </div>
+    <div class="col-md-6">
+        <label for="experience" class="form-label">Team Experience (1-5)</label>
+        <input type="number" id="experience" class="form-control" min="1" max="5" value="1" required>
+    </div>
+    <div class="col-md-6">
+        <label for="communication" class="form-label">Communication (1-5)</label>
+        <input type="number" id="communication" class="form-control" min="1" max="5" value="1" required>
+    </div>
+    <div class="col-md-6">
+        <label for="risk-level" class="form-label">Risk Level (1-5)</label>
+        <input type="number" id="risk-level" class="form-control" min="1" max="5" value="1" required>
+    </div>
+    <div class="col-12">
+        <button type="button" id="submit-button" class="btn btn-primary w-100">Calculate</button>
+    </div>
+</form>
+<div id="result" class="mt-4 p-3 bg-white rounded shadow-sm"></div>
+
+<script src="/static/task_estimation_script.js"></script>
+{% endblock %}
